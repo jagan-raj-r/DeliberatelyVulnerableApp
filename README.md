@@ -11,8 +11,8 @@ VulnApp is designed for:
 
 ## Quick Start
 ```bash
-git clone https://github.com/yourusername/vulnapp.git
-cd vulnapp
+git clone https://github.com/jagan-raj-r/DeliberatelyVulnerableApp.git
+cd DeliberatelyVulnerableApp/vulnapp
 docker-compose up -d
 ```
 
