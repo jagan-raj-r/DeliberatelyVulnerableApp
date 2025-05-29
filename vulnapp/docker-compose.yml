@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./backend
+    ports:
+      - "3000:3000"
+      - "8080:8080"  # Unnecessary port exposure
+    environment:
+      # Hardcoded secrets
+      - DB_PASSWORD=admin123
+      - JWT_SECRET=super_secret_jwt_key
+      - API_KEY=sk-1234567890abcdef
+    volumes:
+      - /:/host_root  # Dangerous host mount
+      - /var/run/docker.sock:/var/run/docker.sock  # Docker socket exposure
+    privileged: true  # Unnecessary privileges
+    network_mode: host  # Host networking
+    
+  database:
+    image: postgres:11.5  # Outdated version
+    environment:
+      - POSTGRES_DB=vulnapp
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password123  # Weak password
+    ports:
+      - "5432:5432"  # Database exposed publicly
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    command: postgres -c log_statement=all  # Logs all queries
+    
+  redis:
+    image: redis:5.0  # Outdated version
+    ports:
+      - "6379:6379"  # No authentication
+    command: redis-server --protected-mode no  # Disabled protection
+
+volumes:
+  db_data:

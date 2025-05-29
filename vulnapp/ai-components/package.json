@@ -1,0 +1,17 @@
+{
+  "name": "vulnapp-ai-components",
+  "version": "1.0.0",
+  "description": "AI components with security vulnerabilities",
+  "main": "src/llm-integration.js",
+  "scripts": {
+    "start": "node src/llm-integration.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "axios": "0.21.1"
+  },
+  "keywords": ["ai", "llm", "vulnerable", "security"],
+  "author": "Security Testing Team",
+  "license": "MIT"
+}
